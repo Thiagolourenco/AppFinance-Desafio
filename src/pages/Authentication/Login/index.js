@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { View, TextInput, Image, Text } from 'react-native';
+import { View, TextInput, Image, Text, ActivityIndicator } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { showMessage } from 'react-native-flash-message';
 
 import styles from './styles';
 import { colors } from '../../../constants/colors';
@@ -18,8 +19,17 @@ export default function Login() {
 
   const navigation = useNavigation();
 
+  const loading = useSelector((state) => state.auth.loading);
+
   function handleLogin() {
-    dispatch(signInRequest(email, password));
+    if (email !== '' && password !== '') {
+      dispatch(signInRequest(email, password));
+    } else {
+      showMessage({
+        type: 'warning',
+        message: 'Todos os campos são obrigátorios.',
+      });
+    }
   }
 
   return (
@@ -62,7 +72,11 @@ export default function Login() {
       </View>
 
       <RectButton style={styles.buttonAccount} onPress={handleLogin}>
-        <Text style={styles.buttonAccountText}>Login</Text>
+        {loading ? (
+          <ActivityIndicator size="small" color={colors.white} />
+        ) : (
+          <Text style={styles.buttonAccountText}>Login</Text>
+        )}
       </RectButton>
       <RectButton
         style={styles.buttonLogin}

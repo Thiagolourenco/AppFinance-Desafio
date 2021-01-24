@@ -25,7 +25,10 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(jwt, user));
   } catch (error) {
-    console.log('ERROr +> ', error);
+    showMessage({
+      type: 'danger',
+      message: 'Dados do usuário inválidos, por favor verificar.',
+    });
     yield put(signInFailure());
   }
 }
