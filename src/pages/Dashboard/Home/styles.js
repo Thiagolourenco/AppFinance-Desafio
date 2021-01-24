@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     shadowColor: '#222',
     shadowOpacity: 0.2,
     shadowRadius: 2,
+    marginBottom: 10,
   },
   viewContent: {
     height: 60,
