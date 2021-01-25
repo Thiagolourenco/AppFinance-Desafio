@@ -32,6 +32,6 @@ export function CreateBankSuccess() {
 
 export function CreateBankFailure() {
   return {
-    type: '@bank/CREATE_BANK_FAILURe',
+    type: '@bank/CREATE_BANK_FAILURE',
   };
 }
