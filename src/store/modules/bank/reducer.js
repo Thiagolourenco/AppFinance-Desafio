@@ -3,6 +3,7 @@ import produce from 'immer';
 const INITIAL_STATE = {
   loading: false,
   data: [],
+  loadingCreate: false,
 };
 
 export default function bank(state = INITIAL_STATE, action) {
@@ -21,6 +22,21 @@ export default function bank(state = INITIAL_STATE, action) {
 
       case '@bank/GET_BANK_FAILURE': {
         draft.loading = false;
+        break;
+      }
+
+      case '@bank/CREATE_BANK_REQUEST': {
+        draft.loadingCreate = true;
+        break;
+      }
+
+      case '@bank/CREATE_BANK_SUCCESS': {
+        draft.loadingCreate = false;
+        break;
+      }
+
+      case '@bank/CREATE_BANK_FAILURE': {
+        draft.loadingCreate = false;
         break;
       }
 

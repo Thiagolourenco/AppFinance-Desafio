@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 
 import Authentication from './Authentication';
-import Dashboard from './Dashboard/bottomTabs';
+import Dashboard from './Dashboard';
 
 const Stack = createStackNavigator();
 

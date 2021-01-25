@@ -55,6 +55,10 @@ export function* signUp({ payload }) {
     yield put(signUpSuccess(jwt, user));
   } catch (error) {
     console.log('ERRO +> ', error);
+    showMessage({
+      type: 'danger',
+      message: 'Error ao Realizar Cadastro',
+    });
     yield put(signUpFailure());
   }
 }

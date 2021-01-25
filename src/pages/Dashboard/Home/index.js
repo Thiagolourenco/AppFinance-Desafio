@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { ScrollView, RectButton } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import styles from './styles';
 import { GetBankRequest } from '../../../store/modules/bank/actions';
@@ -24,6 +24,13 @@ export default function Home() {
     dispatch(GetOperationsRequest());
   }, []);
 
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(GetBankRequest());
+      dispatch(GetOperationsRequest());
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
       {loading ? (
@@ -40,7 +47,9 @@ export default function Home() {
           <View style={styles.viewCards}>
             <View style={styles.viewCardHeader}>
               <Text style={styles.viewCardHeaderTitle}>Bancos Cadastrados</Text>
-              <Text style={styles.viewCardHeaderButton}>Adicionar</Text>
+              <RectButton onPress={() => navigation.navigate('AddBank')}>
+                <Text style={styles.viewCardHeaderButton}>Adicionar</Text>
+              </RectButton>
             </View>
 
             <View style={styles.viewCardContent}>

@@ -16,3 +16,22 @@ export function GetBankFailure() {
     type: '@bank/GET_BANK_FAILURE',
   };
 }
+
+export function CreateBankRequest(name, overdraft) {
+  return {
+    type: '@bank/CREATE_BANK_REQUEST',
+    payload: { name, overdraft },
+  };
+}
+
+export function CreateBankSuccess() {
+  return {
+    type: '@bank/CREATE_BANK_SUCCESS',
+  };
+}
+
+export function CreateBankFailure() {
+  return {
+    type: '@bank/CREATE_BANK_FAILURe',
+  };
+}
