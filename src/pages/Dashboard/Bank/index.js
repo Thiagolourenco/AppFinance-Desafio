@@ -20,7 +20,6 @@ export default function AddBank() {
     setOverdraft('');
   }
 
-  console.log('LAODINFG =>< ', loading);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Adicionar um Novo Banco</Text>
